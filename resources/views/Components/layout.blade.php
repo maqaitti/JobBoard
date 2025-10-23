@@ -15,13 +15,20 @@
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
               <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
-              <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
+               <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
               <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
-
             </div>
           </div>
         </div>
+         <div class="hidden md:block">
+      <div class="ml-4 flex items-center md:ml-6">
+        @guest
+        <x-nav-link href="/login" :active="request()->is('login')">Login</x-nav-link>
+        <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+         @endguest
       </div>
+      </div>
+    </div>
     </div>
   </nav>
 
