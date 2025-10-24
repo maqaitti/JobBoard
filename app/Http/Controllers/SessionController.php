@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class SessionController extends Controller
 {
@@ -10,6 +12,22 @@ class SessionController extends Controller
         return view('auth.login');
     }
     public function store(){
-        dd(request()->all());
+      $attributes= request()->validate([
+            'email'=>['required','email'],
+            'password'=>['required']
+
+        ]);
+        if(! Auth::attempt($attributes)){
+            throw ValidationException::withMessages([
+                'email'=>'Iimeelii dogongoraa! Maaloo Irra deebiin Yaalaa'
+            ]);
+        }
+        request()->session()->regenerate();
+        return redirect('/jobs');
+        }
+    public function destroy(){
+        Auth::logout();
+    return redirect('/');
+
     }
 }
