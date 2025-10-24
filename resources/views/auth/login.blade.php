@@ -3,7 +3,7 @@
 <x-slot:heading>
     Login
 </x-slot:heading>
-<form method="post" action="/login">
+<form method="POST" action="/login">
   @csrf
   
   <div class="space-y-12">
